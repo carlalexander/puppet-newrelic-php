@@ -13,7 +13,7 @@
 # Sample Usage:
 #
 # This class file is not called directly
-class newrelic::package {
+class newrelic_php::package {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
   }

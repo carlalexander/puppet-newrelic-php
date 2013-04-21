@@ -16,6 +16,9 @@
 class newrelic_php::config (
   $license_key = undef
 ) {
+  Exec {
+    path => '/bin:/sbin:/usr/bin:/usr/sbin',
+  }
   File {
     owner   => 'root',
     group   => 'root'

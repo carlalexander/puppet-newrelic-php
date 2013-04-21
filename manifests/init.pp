@@ -20,12 +20,10 @@
 class newrelic_php (
   $license_key = undef
 ) {
-  class { 'newrelic_php::package':
-    notify => Class['newrelic::service'],
-  }
+  class { 'newrelic_php::package': }
 
   class { 'newrelic_php::config':
     license_key => $license_key,
-    require     => Class['newrelic::package'],
+    require     => Class['newrelic_php::package'],
   }
 }
