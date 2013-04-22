@@ -20,8 +20,9 @@ class newrelic_php::config (
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
   }
   File {
-    owner   => 'root',
-    group   => 'root'
+    owner => 'root',
+    group => 'root',
+    mode  => '0644'
   }
 
   if ($license_key == undef) {
@@ -35,16 +36,18 @@ class newrelic_php::config (
   }
 
   file { '/etc/newrelic/newrelic.cfg':
-    ensure  => file,
-    mode    => '0755',
-    content => template('newrelic_php/newrelic.cfg.erb'),
+    ensure  => absent,
     require => Exec['newrelic-install']
   }
 
   file { '/etc/php5/cli/conf.d/newrelic.ini':
     ensure  => file,
-    mode    => '0644',
     content => template('newrelic_php/newrelic.ini.erb'),
     require => Exec['newrelic-install']
+  }
+
+  file { '/var/log/newrelic/newrelic-daemon.log':
+    owner => 'www-data',
+    group => 'www-data'
   }
 }
