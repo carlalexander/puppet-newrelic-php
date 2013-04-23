@@ -31,7 +31,7 @@ class newrelic_php::config (
 
   exec { 'newrelic-install':
     command     => 'newrelic-install install',
-    creates     => "/etc/newrelic/newrelic.cfg",
+    creates     => '/etc/php5/cli/conf.d/newrelic.ini',
     environment => ['NR_INSTALL_SILENT=yes', "NR_INSTALL_KEY=${license_key}"],
   }
 
